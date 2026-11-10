@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mochi Period Tracker</title>
+  <meta name="description" content="A cute, private period tracker.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FFE4EC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Mochi">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <main id="view" class="view"></main>
+    <nav class="nav" aria-label="Main">
+      <button data-tab="home"><span>🏠</span>Home</button>
+      <button data-tab="calendar"><span>📅</span>Calendar</button>
+      <button data-tab="insights"><span>📊</span>Insights</button>
+      <button data-tab="tips"><span>💡</span>Tips</button>
+      <button data-tab="me"><span>🐱</span>Me</button>
+    </nav>
+    <div id="sheet-backdrop"></div>
+    <div id="sheet" role="dialog" aria-modal="true">
+      <button class="sheet-close" aria-label="Close">×</button>
+      <div class="sheet-body"></div>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <div id="print-root"></div>
+  <noscript>Please turn on JavaScript to use Mochi.</noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
