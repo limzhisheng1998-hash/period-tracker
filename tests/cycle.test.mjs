@@ -56,3 +56,16 @@ assert.match(pats[0].text, /headaches in the 1–3 days before/);
 assert.equal(monthGrid('2026-11')[0][0], '2026-10-26');
 
 console.log('All cycle tests passed ✓');
+
+// Jokes: exactly 365, all different, every line has a question and an answer
+const { JOKES_EN, JOKES_ZH, jokeForDay } = await import('../js/jokes.js');
+assert.equal(JOKES_EN.length, 183);
+assert.equal(JOKES_ZH.length, 182);
+const all = [...JOKES_EN, ...JOKES_ZH];
+all.forEach((j) => assert.ok(j.length === 2 && j[0] && j[1], 'bad joke line: ' + j));
+assert.equal(new Set(all.map((j) => j[0])).size, 365, 'repeated question');
+assert.equal(new Set(all.map((j) => j[1])).size, 365, 'repeated punchline');
+const seen = new Set();
+for (let d = 20000; d < 20365; d++) seen.add(jokeForDay(d).q);
+assert.equal(seen.size, 365, 'a year of days should show 365 different jokes');
+console.log('All joke tests passed ✓');

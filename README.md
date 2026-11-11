@@ -13,6 +13,7 @@ A cute, private period tracker that you add to your iPhone Home Screen like an a
 - Late period alert (default: 5 days; change it in **Me**)
 - "Period coming soon" tips: symptoms to watch for, food to eat and food to avoid
 - Today's cycle forecast and Mochi the kitty, whose mood changes with your cycle
+- 😹 Joke of the day: 365 different jokes a year (English puns and Chinese 谐音梗, taking turns)
 - 🎒 Comfort kit checklist that resets each cycle
 - 🔍 Pattern spotter, e.g. "You often get headaches 1–3 days before your period"
 - 🩺 Doctor summary (print / save as PDF / share as text)

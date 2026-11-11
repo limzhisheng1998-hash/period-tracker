@@ -1,10 +1,11 @@
 import { todayKey, addDays, diffDays, toNum, fmt, fmtLong, analyze, monthGrid, shiftMonth, findPatterns, isValidKey } from './cycle.js';
 import { PHASES, PHASE_ORDER, FLOWS, MOODS, SYMPTOMS, DOCTOR_SIGNS } from './content.js';
 import { kitty } from './mascot.js';
+import { jokeForDay } from './jokes.js';
 import * as store from './store.js';
 
 let data = store.load();
-const ui = { tab: 'home', month: null, sheet: null, ob: null };
+const ui = { tab: 'home', month: null, sheet: null, ob: null, jokeShown: null };
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -140,6 +141,14 @@ function viewHome(A) {
   }
 
   html += `<section class="card forecast"><h3>Today's cycle forecast</h3><p class="fc">${esc(forecast(A))}</p></section>`;
+
+  const joke = jokeForDay(toNum(today));
+  const shown = ui.jokeShown === today;
+  html += `<section class="card joke" lang="${joke.lang === 'zh' ? 'zh' : 'en'}">
+    <h3>${joke.lang === 'zh' ? '😹 Mochi 每日一笑' : '😹 Mochi\'s joke of the day'} <span class="joke-no">#${joke.number}/365</span></h3>
+    <p class="joke-q">${esc(joke.q)}</p>
+    ${shown ? `<p class="joke-a">${esc(joke.a)}</p>` : `<button class="btn soft" data-act="joke-reveal">${joke.lang === 'zh' ? '🥁 揭晓答案' : '🥁 Tell me!'}</button>`}
+  </section>`;
 
   if (P && A.phase !== 'late') {
     const title = A.phase === 'pms' ? '🌙 Period coming soon. Get ready!' : `${P.emoji} Tips for today`;
@@ -648,6 +657,10 @@ const ACT = {
     if (A.last) data.endedPeriods = [...new Set([...data.endedPeriods, A.last.start])];
     persist();
     toast('Yay, period done! ✨');
+    render();
+  },
+  'joke-reveal': () => {
+    ui.jokeShown = todayKey();
     render();
   },
   'log-today': () => openSheet('day', { key: todayKey() }),
