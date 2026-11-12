@@ -1,5 +1,5 @@
 // Lets Mochi open without internet. It keeps a copy of the app files (never your data) on the phone.
-const CACHE = 'mochi-v2';
+const CACHE = 'mochi-v3';
 const FILES = [
   './',
   './index.html',

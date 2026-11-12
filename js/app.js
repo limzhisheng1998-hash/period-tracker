@@ -145,7 +145,7 @@ function viewHome(A) {
   const joke = jokeForDay(toNum(today));
   const shown = ui.jokeShown === today;
   html += `<section class="card joke" lang="${joke.lang === 'zh' ? 'zh' : 'en'}">
-    <h3>${joke.lang === 'zh' ? '😹 Mochi 每日一笑' : '😹 Mochi\'s joke of the day'} <span class="joke-no">#${joke.number}/365</span></h3>
+    <h3>${joke.lang === 'zh' ? '😹 Mochi 每日一笑' : '😹 Mochi\'s joke of the day'}</h3>
     <p class="joke-q">${esc(joke.q)}</p>
     ${shown ? `<p class="joke-a">${esc(joke.a)}</p>` : `<button class="btn soft" data-act="joke-reveal">${joke.lang === 'zh' ? '🥁 揭晓答案' : '🥁 Tell me!'}</button>`}
   </section>`;
